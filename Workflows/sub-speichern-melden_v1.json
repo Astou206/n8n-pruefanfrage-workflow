@@ -1,0 +1,245 @@
+{
+  "name": "02_SUB_Speichern_Melden",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -528,
+        -176
+      ],
+      "id": "343bbee4-db69-4293-954f-45fc75b48d25",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Sub-Workflow, Code-Node \"Mail vorbereiten\"  –  Mode: \"Run Once for Each Item\", JavaScript\n// Bekommt Items aus ALLEN Enden des Hauptworkflows (Angebot, Rueckfrage, Aussortiert,\n// Kein Katalogtreffer, Manuelle Pruefung), vereinheitlicht die Felder fuer Supabase\n// und baut Betreff + Text der Mail passend zum Status.\n\nconst d = $json;\nconst status = d.status || 'Manuelle Pruefung';\nconst firma = d.firma || 'Unbekannt';\n\nconst liste = v => (Array.isArray(v) ? v : []);\nconst pgArray = arr => '{' + liste(arr).map(v => `\"${String(v).replace(/\"/g, '')}\"`).join(',') + '}';\nconst esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\nconst br = s => esc(s).replace(/\\n/g, '<br>');\n\nconst fehlend = liste(d.fehlende_angaben);\nconst valFehler = liste(d.validierungsfehler);\n\n// Laufzeit: aus dem Angebotszweig uebernehmen, sonst hier berechnen\nconst laufzeit = d.laufzeit_s ?? (d.startzeit\n  ? Math.round((Date.now() - new Date(d.startzeit).getTime()) / 100) / 10\n  : null);\n\nconst kopf =\n  `<p><b>Firma:</b> ${esc(firma)}<br>` +\n  `<b>Ansprechpartner:</b> ${esc(d.ansprechpartner || '–')}<br>` +\n  `<b>E-Mail:</b> ${esc(d.email || '–')}<br>` +\n  `<b>Status:</b> ${esc(status)}</p>`;\nconst anfrage = `<p><b>Originalanfrage:</b><br>${br(d.rohtext)}</p>`;\n\nlet betreff = null;\nlet inhalt = null;\nlet senden = true;\nlet text = d.angebotstext || null;   // Angebots- bzw. Rueckfragetext fuer Supabase\n\nswitch (status) {\n  case 'Angebot erstellt':\n    betreff = `[Neues Angebot] ${firma} – ${Number(d.angebotssumme_eur || 0).toLocaleString('de-DE')} EUR`;\n    inhalt = kopf + `<p>${br(text)}</p>`;\n    break;\n\n  case 'Rueckfrage':\n    text =\n      'Sehr geehrte Damen und Herren,\\n\\n' +\n      'vielen Dank für Ihre Anfrage. Damit wir Ihnen ein Angebot erstellen können, ' +\n      `benötigen wir noch folgende Angaben: ${fehlend.join(', ')}.\\n\\n` +\n      'Mit freundlichen Grüßen\\nIhr Vertriebsteam';\n    betreff = `[Rückfrage nötig] ${firma} – fehlt: ${fehlend.join(', ')}`;\n    inhalt = kopf + `<p><b>Vorschlag für die Rückfrage an den Kunden:</b><br>${br(text)}</p>` + anfrage;\n    break;\n\n  case 'Kein Katalogtreffer':\n    betreff = `[Kein Katalogtreffer] ${firma} – ${d.produktbeschreibung || 'unbekanntes Produkt'}`;\n    inhalt = kopf + '<p>Für dieses Produkt gibt es keine Leistung im Katalog. Bitte fachlich prüfen.</p>' + anfrage;\n    break;\n\n  case 'Aussortiert':\n    senden = false;   // Spam & Co.: nur speichern, keine Mail\n    break;\n\n  default: // 'Manuelle Pruefung' und alles Unerwartete\n    betreff = `[Manuelle Prüfung] ${firma}`;\n    inhalt = kopf +\n      `<p><b>Grund:</b> ${esc(valFehler.join('; ') || 'unbekannt')}</p>` +\n      anfrage +\n      `<p><b>LLM-Rohantwort:</b><br>${br(d.llm_rohantwort)}</p>`;\n}\n\nreturn {\n  json: {\n    // Felder fuer die Tabelle \"anfragen\"\n    firma: firma,\n    ansprechpartner: d.ansprechpartner || null,\n    email: d.email || null,\n    produktkategorie: d.produktkategorie || null,\n    zielmaerkte_pg: pgArray(d.zielmaerkte),\n    fehlende_angaben_pg: pgArray(fehlend),\n    status: status,\n    angebotssumme_eur: d.angebotssumme_eur ?? null,\n    token_kosten_usd: d.kosten_usd ?? null,\n    laufzeit_s: laufzeit,\n    rohtext: d.rohtext || null,\n    angebotstext: text,\n    // Steuerung der Mail\n    mail_senden: senden,\n    mail_betreff: betreff,\n    mail_html: inhalt,\n  },\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        -176
+      ],
+      "id": "76d79773-d774-4253-b303-84271062d4b9",
+      "name": "Mail vorbereiten"
+    },
+    {
+      "parameters": {
+        "tableId": "anfragen",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "firma",
+              "fieldValue": "={{ $json.firma }}"
+            },
+            {
+              "fieldId": "ansprechpartner",
+              "fieldValue": "={{ $json.ansprechpartner }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "produktkategorie",
+              "fieldValue": "={{ $json.produktkategorie }}"
+            },
+            {
+              "fieldId": "zielmaerkte",
+              "fieldValue": "={{ $json.zielmaerkte_pg }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.status }}"
+            },
+            {
+              "fieldId": "angebotssumme_eur",
+              "fieldValue": "={{ $json.angebotssumme_eur }}"
+            },
+            {
+              "fieldId": "fehlende_angaben",
+              "fieldValue": "={{ $json.fehlende_angaben_pg }}"
+            },
+            {
+              "fieldId": "token_kosten_usd",
+              "fieldValue": "={{ $json.token_kosten_usd }}"
+            },
+            {
+              "fieldId": "laufzeit_s",
+              "fieldValue": "={{ $json.laufzeit_s }}"
+            },
+            {
+              "fieldId": "rohtext",
+              "fieldValue": "={{ $json.rohtext }}"
+            },
+            {
+              "fieldId": "angebotstext",
+              "fieldValue": "={{ $json.angebotstext }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -176
+      ],
+      "id": "255f9c3f-d0a6-48b2-9113-1107ec3e2b4a",
+      "name": "Anfrage speichern",
+      "credentials": {
+        "supabaseApi": {
+          "id": "x3Dka9E3ODuk7v02",
+          "name": "Supabase account 38"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8749f9a7-9bad-4f52-a07f-eb852c9ae670",
+              "leftValue": "={{ $('Mail vorbereiten').item.json.mail_senden }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        144,
+        -176
+      ],
+      "id": "fa60043f-a647-4282-82e7-d039e54efc1a",
+      "name": "Mail senden?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "Prüfanfragen <onboarding@resend.dev>"
+            },
+            {
+              "name": "to",
+              "value": "astou.diame@tn.syntax-institut.de"
+            },
+            {
+              "name": "=subject",
+              "value": "={{ $('Mail vorbereiten').item.json.mail_betreff }}"
+            },
+            {
+              "name": "=html",
+              "value": "={{ $('Mail vorbereiten').item.json.mail_html }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        416,
+        -288
+      ],
+      "id": "2274a848-9c20-486d-9b01-2e101ab246ec",
+      "name": "Mail an Vertrieb",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "7R4YqSYq3ZgaVyzV",
+          "name": "Resend – Prüfanfragen"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Mail vorbereiten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail vorbereiten": {
+      "main": [
+        [
+          {
+            "node": "Anfrage speichern",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anfrage speichern": {
+      "main": [
+        [
+          {
+            "node": "Mail senden?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail senden?": {
+      "main": [
+        [
+          {
+            "node": "Mail an Vertrieb",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "Kfq9YYQl0xiO9T1G",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "8b0ac436-2057-48b9-95cd-f2e04ec6afa2",
+  "meta": {
+    "instanceId": "f032027e20e9709391bcafe9291ae76dc2a07ff2b593bca6936b7404ddb31c33"
+  },
+  "nodeGroups": [],
+  "id": "TpJU4iq8F1A1LaGU",
+  "tags": []
+}
