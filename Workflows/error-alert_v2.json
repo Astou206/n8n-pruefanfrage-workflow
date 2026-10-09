@@ -1,0 +1,163 @@
+{
+  "name": "03_ERROR_Alert",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        -256
+      ],
+      "id": "124978a0-0713-4f24-b0e0-6471ddaae12b",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "tableId": "logs",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "execution_id",
+              "fieldValue": "={{ $json.execution_id }}"
+            },
+            {
+              "fieldId": "schritt",
+              "fieldValue": "={{ $json.schritt }}"
+            },
+            {
+              "fieldId": "level",
+              "fieldValue": "={{ $json.level }}"
+            },
+            {
+              "fieldId": "nachricht",
+              "fieldValue": "={{ $json.nachricht }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -256
+      ],
+      "id": "f6ba3784-72f4-4f28-9539-bb2dbd7e423b",
+      "name": "Fehler loggen",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Qtju33plYGm23XMx",
+          "name": "Supabase – Prüfanfragen"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "Prüfanfragen <onboarding@resend.dev>"
+            },
+            {
+              "name": "to",
+              "value": "astou.diame@tn.syntax-institut.de"
+            },
+            {
+              "name": "=subject",
+              "value": "={{ $('Alert vorbereiten').item.json.betreff }}"
+            },
+            {
+              "name": "=html",
+              "value": "={{ $('Alert vorbereiten').item.json.html }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        304,
+        -256
+      ],
+      "id": "6225df54-5da4-4991-a4b2-5f86546269f0",
+      "name": "Alert-Mail",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "7R4YqSYq3ZgaVyzV",
+          "name": "Resend – Prüfanfragen"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Error-Workflow, Code-Node \"Alert vorbereiten\"  –  Mode: \"Run Once for Each Item\", JavaScript\n// Liest die Daten des Error Triggers, erkennt die Fehlerart und baut\n// den Log-Eintrag fuer Supabase sowie die Alert-Mail.\n\nconst e = $json.execution || {};\nconst w = $json.workflow || {};\n\nconst meldung = e.error?.message || e.error?.description || 'Unbekannter Fehler';\nconst node = e.lastNodeExecuted || e.error?.node?.name || 'unbekannt';\nconst workflowName = w.name || 'unbekannter Workflow';\n\n// Fehlerart erkennen -> konkreter Hinweis fuer die Behebung\nlet hinweis = 'Fehler prüfen';\nif (/401|403|unauthori|forbidden|credential|api key|permission/i.test(meldung)) hinweis = 'Credential prüfen';\nelse if (/402|credit|insufficient/i.test(meldung)) hinweis = 'Guthaben prüfen';\nelse if (/429|rate limit/i.test(meldung)) hinweis = 'Rate Limit – später erneut versuchen';\nelse if (/timeout|timed out|ETIMEDOUT|ECONNRESET|ENOTFOUND|connection cannot be established|host/i.test(meldung)) hinweis = 'Timeout / Verbindung prüfen';\n\nconst esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\n\nreturn {\n  json: {\n    // fuer die Tabelle \"logs\"\n    execution_id: String(e.id ?? ''),\n    schritt: `${workflowName} / ${node}`,\n    level: 'ERROR',\n    nachricht: `${hinweis}: ${meldung}`.slice(0, 1000),\n    // fuer die Alert-Mail\n    betreff: `[ALERT] ${hinweis} – ${workflowName} / ${node}`,\n    html:\n      `<p><b>Workflow:</b> ${esc(workflowName)}<br>` +\n      `<b>Fehlerhafter Node:</b> ${esc(node)}<br>` +\n      `<b>Execution-ID:</b> ${esc(e.id)}<br>` +\n      `<b>Hinweis:</b> ${esc(hinweis)}</p>` +\n      `<p><b>Fehlermeldung:</b><br>${esc(meldung)}</p>` +\n      (e.url ? `<p><a href=\"${esc(e.url)}\">Execution in n8n öffnen</a></p>` : ''),\n  },\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        -256
+      ],
+      "id": "224b6e5b-64ab-4ef6-8281-03d4c54893c8",
+      "name": "Alert vorbereiten"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Alert vorbereiten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fehler loggen": {
+      "main": [
+        [
+          {
+            "node": "Alert-Mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alert vorbereiten": {
+      "main": [
+        [
+          {
+            "node": "Fehler loggen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "7892e0ef-da59-454c-8eb1-f2d31d9a5ecb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f032027e20e9709391bcafe9291ae76dc2a07ff2b593bca6936b7404ddb31c33"
+  },
+  "nodeGroups": [],
+  "id": "Kfq9YYQl0xiO9T1G",
+  "tags": []
+}
