@@ -754,5 +754,18 @@
   },
   "nodeGroups": [],
   "id": "gomXe6plwnfIHQKd",
-  "tags": []
+  "tags": [
+    {
+      "name": "v1.0",
+      "id": "bd29p46DiiaqAZie",
+      "updatedAt": "2026-10-09T20:16:51.727Z",
+      "createdAt": "2026-10-09T20:16:51.727Z"
+    },
+    {
+      "name": "abschlussprojekt",
+      "id": "oE1uOj3wjomYx9Ur",
+      "updatedAt": "2026-10-09T20:16:34.545Z",
+      "createdAt": "2026-10-09T20:16:34.545Z"
+    }
+  ]
 }
