@@ -2,6 +2,23 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## v1.1 – 2026-10-12 – Mail-Eingang (Feedback Zwischenpräsentation)
+Datei: `angebot-workflow_v1.1.json`
+
+**Neu**
+- Zweiter Eingang: Anfragen per Mail an ein Gmail-Postfach (Email Trigger IMAP, App-Passwort)
+- Node „Mail umwandeln“: Firma (Absender-Domain), Ansprechpartner, E-Mail und Anfragetext aus der Mail
+- „Loop Over Items“: jede Anfrage wird einzeln verarbeitet, egal ob Formular oder Mail
+
+**Behoben**
+- Mehrere gleichzeitig eingehende Mails wurden zu einem Angebot vermischt, Anfragen gingen verloren (T16)
+- Privatperson mit gebrauchtem Akku wurde als Prüfanfrage erkannt → Prompt-Regel ergänzt (T13)
+- Tab-Zeichen im Feld „Firma“ entfernt
+
+**Getestet**
+- Neue Tests T13–T16 bestanden, insgesamt 16 Testfälle
+- Kontrolltest nach Prompt-Änderung: Firmenanfrage per Mail ergibt weiterhin 7.310 EUR
+
 ## v1.0 – 2026-10-09 – Abgabeversion
 Dateien: `angebot-workflow_v1.0.json`, `sub-speichern-melden_v2.json`, `error-alert_v2.json`
 
