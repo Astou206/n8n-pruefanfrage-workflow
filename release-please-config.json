@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "8d5afe36e543d8e5002ebc48f6fe297891adc7d9",
+  "include-v-in-tag": true,
+  "include-component-in-tag": false,
+  "pull-request-header": "Automatisch erstellter Release-Pull-Request. Versionstag und GitHub Release entstehen erst, wenn dieser Pull Request gemergt wird.",
+  "packages": {
+    ".": {
+      "release-type": "simple",
+      "package-name": "n8n-pruefanfrage-workflow",
+      "changelog-path": "CHANGELOG.md",
+      "changelog-sections": [
+        { "type": "feat", "section": "Neue Funktionen" },
+        { "type": "fix", "section": "Fehlerbehebungen" },
+        { "type": "perf", "section": "Performance" },
+        { "type": "refactor", "section": "Technische Änderungen" },
+        { "type": "build", "section": "Technische Änderungen" },
+        { "type": "ci", "section": "Technische Änderungen" },
+        { "type": "docs", "section": "Dokumentation" },
+        { "type": "test", "section": "Tests" },
+        { "type": "revert", "section": "Rücknahmen" },
+        { "type": "chore", "section": "Sonstiges", "hidden": true },
+        { "type": "style", "section": "Formatierung", "hidden": true }
+      ]
+    }
+  }
+}
