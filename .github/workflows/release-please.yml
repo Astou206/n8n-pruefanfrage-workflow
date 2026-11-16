@@ -1,0 +1,26 @@
+# Release Please: erstellt bei neuen Änderungen auf main einen Release-Pull-Request.
+# Ein Versionstag und ein GitHub Release entstehen erst, wenn dieser PR gemergt wird.
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write       # Versionstag, GitHub Release und CHANGELOG.md schreiben
+  pull-requests: write  # Release-Pull-Request anlegen und aktualisieren
+  issues: write         # Labels am Release-Pull-Request setzen
+
+concurrency:
+  group: release-please
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
