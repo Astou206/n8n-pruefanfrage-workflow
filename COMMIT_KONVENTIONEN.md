@@ -1,5 +1,3 @@
-[COMMIT_KONVENTIONEN.md](https://github.com/user-attachments/files/34921894/COMMIT_KONVENTIONEN.md)
-
 # Commit-Konventionen und Release-Ablauf
 
 Dieses Repository nutzt [Conventional Commits](https://www.conventionalcommits.org/de/) und Release Please. Aus den Commit-Nachrichten entstehen automatisch die Versionsnummer und die Einträge in der `CHANGELOG.md`.
