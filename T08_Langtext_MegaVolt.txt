@@ -1,0 +1,209 @@
+Sehr geehrte Damen und Herren,
+
+mein Name ist Dr. Henrike Vogt, ich leite bei der MegaVolt Systems GmbH den Bereich Produktzulassung. Wir möchten Sie um ein Angebot für die Zulassungsprüfungen unseres neuen Hochvolt-Batteriepacks bitten. Zielmarkt ist die Europäische Union. Damit Sie sich ein vollständiges Bild machen können, schicke ich Ihnen vorab eine ausführliche Beschreibung unseres Unternehmens, des Produkts und unserer bisherigen Entwicklungsarbeit. Die eigentliche Bitte um ein Angebot finden Sie noch einmal zusammengefasst am Ende dieser Nachricht.
+
+## 1. Unternehmensgeschichte
+
+Die MegaVolt Systems GmbH wurde vor mehr als zwanzig Jahren als kleines Ingenieurbüro für Leistungselektronik gegründet. In den ersten Jahren entwickelten wir vor allem Steuerungen für industrielle Antriebe, später kamen Ladegeräte für Flurförderfahrzeuge hinzu. Mit dem wachsenden Markt für elektrische Nutzfahrzeuge haben wir uns schrittweise auf Batteriesysteme spezialisiert.
+
+Die wichtigsten Stationen im Überblick:
+
+- Gründungsjahr: Gründung als Ingenieurbüro mit vier Mitarbeitenden, Schwerpunkt Leistungselektronik für Industrieantriebe.
+- drittes Jahr: Erster Serienauftrag für Motorsteuerungen eines mittelständischen Maschinenbauers, Umzug in eigene Räume.
+- fünftes Jahr: Aufbau einer eigenen Prüfabteilung für elektrische Sicherheit und Umweltsimulation, erste Zertifizierung des Qualitätsmanagementsystems.
+- achtes Jahr: Entwicklung von Ladegeräten für Gabelstapler und Hubwagen, Ausweitung des Kundenkreises auf Logistikunternehmen.
+- zehntes Jahr: Gründung der Abteilung Energiespeicher, erste Prototypen von Lithium-Ionen-Batteriemodulen für stationäre Anwendungen.
+- zwölftes Jahr: Kooperation mit einer Hochschule zur Alterung von Lithium-Ionen-Zellen, Aufbau eines Zellprüfstands.
+- fünfzehntes Jahr: Serienfertigung von Batteriemodulen für Flurförderfahrzeuge, rund achtzig Mitarbeitende.
+- achtzehntes Jahr: Beginn der Entwicklung von Hochvolt-Batteriepacks für leichte Nutzfahrzeuge, Investition in eine Montagelinie.
+- zwanzigstes Jahr: Fertigstellung der Pilotlinie und Bau der ersten Vorserienmuster des Batteriepacks, das Gegenstand dieser Anfrage ist.
+
+Heute beschäftigen wir rund 140 Mitarbeitende an zwei Standorten in Deutschland. Etwa ein Drittel arbeitet in Entwicklung und Erprobung. Unsere Kunden sind vor allem Hersteller von Kleintransportern, Kommunalfahrzeugen und Sonderfahrzeugen, die ihre Fahrzeuge elektrifizieren und dafür ein fertig entwickeltes Batteriesystem suchen. Wir legen großen Wert auf Qualität, Nachvollziehbarkeit und eine enge Zusammenarbeit mit unseren Kunden. Deshalb möchten wir auch die Zulassungsprüfungen frühzeitig planen und nicht erst kurz vor dem Serienstart.
+
+## 2. Produktbeschreibung
+
+Das Batteriepack mit der internen Bezeichnung MV-HV400 ist für Kleintransporter mit einem zulässigen Gesamtgewicht bis 3,5 Tonnen ausgelegt. Es soll unter dem Ladeboden montiert werden und ersetzt dort den bisherigen Bauraum für Tank und Abgasanlage. Das Pack besteht aus sechzehn Modulen, die in einem Gehäuse aus Aluminium-Druckguss untergebracht sind. Die Module sind in Reihe geschaltet, die Nennspannung des Packs liegt bei etwa 400 Volt.
+
+Das Gehäuse ist gegen das Eindringen von Wasser und Staub geschützt und verfügt über eine Druckausgleichseinheit. Im Inneren befinden sich neben den Modulen das Batteriemanagementsystem, die Hochvolt-Schütze, eine Vorladeschaltung, die Sicherung sowie die Kühlplatten des Flüssigkeitskreislaufs. Das Pack wird über einen Hochvolt-Stecker und einen Niedervolt-Signalstecker mit dem Fahrzeug verbunden. Die Kommunikation mit dem Fahrzeug erfolgt über CAN.
+
+Bei der Entwicklung haben wir besonders auf die Sicherheit im Fehlerfall geachtet. Zwischen den Modulen befinden sich Barrieren, die eine Ausbreitung eines thermischen Ereignisses verzögern sollen. Das Gehäuse besitzt eine definierte Entgasungsöffnung, die Gase gezielt vom Fahrgastraum weg ableitet. Das Batteriemanagementsystem überwacht Spannung und Temperatur jeder Zellgruppe und kann das Pack über die Schütze vom Fahrzeug trennen.
+
+## 3. Technisches Datenblatt
+
+Die folgenden Angaben beziehen sich auf den aktuellen Stand der Vorserienmuster. Einzelne Werte können sich bis zum Serienstart noch geringfügig ändern.
+
+- Nennspannung: ca. 400 V
+- Spannungsbereich: ca. 320 bis 460 V
+- Nennkapazität: ca. 190 Ah
+- Energieinhalt: ca. 76 kWh
+- Zellchemie: Lithium-Ionen, NMC
+- Zellformat: prismatisch
+- Anzahl Module: 16
+- Gewicht: ca. 480 kg
+- Abmessungen: ca. 1.900 × 1.300 × 160 mm
+- Kühlung: Flüssigkeitskühlung mit Wasser-Glykol-Gemisch
+- Schutzart: IP67 (Herstellerangabe, noch nicht geprüft)
+- Betriebstemperatur: −20 bis +55 °C
+- Kommunikation: CAN 2.0B
+- Dauerentladestrom: ca. 250 A
+- Spitzenentladestrom: ca. 500 A für 10 s
+- Ladeleistung DC: bis ca. 100 kW
+
+### 3.1 Moduldaten
+
+Jedes Modul wird vor dem Einbau einzeln vermessen. Die folgende Übersicht zeigt die Messwerte der Module des ersten Vorserienmusters. Sie dient Ihnen zur Einschätzung der Streuung innerhalb des Packs.
+
+- Modul 01: Leerlaufspannung 25.03 V, Innenwiderstand 1.88 Milliohm, Kapazität bei Raumtemperatur 189.4 Ah, Temperatur bei der Messung 22.6 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 02: Leerlaufspannung 25.11 V, Innenwiderstand 1.98 Milliohm, Kapazität bei Raumtemperatur 190.3 Ah, Temperatur bei der Messung 21.1 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 03: Leerlaufspannung 24.91 V, Innenwiderstand 2.02 Milliohm, Kapazität bei Raumtemperatur 189.4 Ah, Temperatur bei der Messung 21.2 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 04: Leerlaufspannung 25.07 V, Innenwiderstand 2.21 Milliohm, Kapazität bei Raumtemperatur 189.7 Ah, Temperatur bei der Messung 21.3 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 05: Leerlaufspannung 25.15 V, Innenwiderstand 2.27 Milliohm, Kapazität bei Raumtemperatur 190.1 Ah, Temperatur bei der Messung 22.4 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 06: Leerlaufspannung 25.29 V, Innenwiderstand 1.82 Milliohm, Kapazität bei Raumtemperatur 189.8 Ah, Temperatur bei der Messung 23.1 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 07: Leerlaufspannung 24.96 V, Innenwiderstand 1.86 Milliohm, Kapazität bei Raumtemperatur 191.0 Ah, Temperatur bei der Messung 21.8 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 08: Leerlaufspannung 24.97 V, Innenwiderstand 2.09 Milliohm, Kapazität bei Raumtemperatur 190.0 Ah, Temperatur bei der Messung 22.6 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 09: Leerlaufspannung 25.12 V, Innenwiderstand 1.83 Milliohm, Kapazität bei Raumtemperatur 189.7 Ah, Temperatur bei der Messung 21.1 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 10: Leerlaufspannung 25.17 V, Innenwiderstand 2.01 Milliohm, Kapazität bei Raumtemperatur 190.5 Ah, Temperatur bei der Messung 21.8 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 11: Leerlaufspannung 25.08 V, Innenwiderstand 1.95 Milliohm, Kapazität bei Raumtemperatur 190.7 Ah, Temperatur bei der Messung 23.0 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 12: Leerlaufspannung 25.0 V, Innenwiderstand 2.09 Milliohm, Kapazität bei Raumtemperatur 191.1 Ah, Temperatur bei der Messung 22.3 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 13: Leerlaufspannung 25.19 V, Innenwiderstand 1.94 Milliohm, Kapazität bei Raumtemperatur 189.5 Ah, Temperatur bei der Messung 23.5 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 14: Leerlaufspannung 25.07 V, Innenwiderstand 2.18 Milliohm, Kapazität bei Raumtemperatur 190.3 Ah, Temperatur bei der Messung 21.4 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 15: Leerlaufspannung 24.92 V, Innenwiderstand 2.13 Milliohm, Kapazität bei Raumtemperatur 190.5 Ah, Temperatur bei der Messung 22.9 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+- Modul 16: Leerlaufspannung 25.25 V, Innenwiderstand 1.96 Milliohm, Kapazität bei Raumtemperatur 190.5 Ah, Temperatur bei der Messung 22.7 °C, keine Auffälligkeiten bei der Sichtprüfung, Isolationswiderstand innerhalb der internen Vorgabe.
+
+### 3.2 Batteriemanagementsystem
+
+Das Batteriemanagementsystem besteht aus einem zentralen Steuergerät und sechzehn Überwachungsplatinen, je eine pro Modul. Es misst die Spannungen aller Zellgruppen, die Temperaturen an mehreren Stellen jedes Moduls, den Strom und den Isolationswiderstand. Aus diesen Daten berechnet es den Ladezustand und den Alterungszustand. Bei Grenzwertüberschreitungen begrenzt es zuerst den Strom und trennt im nächsten Schritt das Pack über die Schütze. Alle Fehlerereignisse werden in einem nicht flüchtigen Speicher protokolliert, damit sie bei einer späteren Analyse ausgelesen werden können.
+
+Die Software des Batteriemanagementsystems wurde nach unserem internen Entwicklungsprozess erstellt. Wir haben Anforderungen, Architektur und Tests dokumentiert und können diese Unterlagen bei Bedarf zur Verfügung stellen. Für die funktionale Sicherheit haben wir eine erste Gefährdungsanalyse durchgeführt, deren Ergebnisse in die Auslegung der Abschaltfunktionen eingeflossen sind.
+
+### 3.3 Thermomanagement
+
+Die Module liegen auf Kühlplatten, die vom Kühlkreislauf des Fahrzeugs durchströmt werden. Bei niedrigen Temperaturen kann das Kühlmittel über einen elektrischen Heizer erwärmt werden, damit das Laden auch im Winter möglich ist. In unseren eigenen Versuchen blieb die maximale Zelltemperatur bei Dauerbelastung mit Nennstrom und einer Umgebungstemperatur von 35 °C unter 45 °C. Die Temperaturdifferenz zwischen dem wärmsten und dem kältesten Modul betrug dabei weniger als 5 Kelvin.
+
+## 4. Bisherige Erprobung
+
+Wir haben in unserer eigenen Prüfabteilung bereits eine Reihe von Voruntersuchungen durchgeführt. Diese ersetzen selbstverständlich keine Prüfung durch eine unabhängige Stelle, sie geben uns aber Sicherheit, dass die Muster grundsätzlich reif für die Zulassungsprüfungen sind.
+
+- Vibration: Sinusförmige und rauschförmige Anregung in drei Achsen nach einem internen Profil, das an typische Belastungen im Kleintransporter angelehnt ist. Keine mechanischen Schäden, keine Spannungsabweichungen.
+- Mechanischer Schock: Halbsinus-Schocks in allen Raumrichtungen. Gehäuse und Befestigungspunkte ohne Befund.
+- Temperaturwechsel: Wechsel zwischen −30 und +70 °C über mehrere Zyklen. Dichtheit nach dem Test erhalten.
+- Dichtheit: Druckabfallprüfung des Gehäuses vor und nach den Umwelttests, Werte innerhalb unserer Vorgabe.
+- Isolationswiderstand: Messung im Neuzustand und nach Feuchtelagerung, Werte deutlich über dem internen Grenzwert.
+- Kurzschluss außen: Versuch an einem einzelnen Modul mit externer Kurzschlussbrücke, Abschaltung durch die Sicherung wie vorgesehen.
+- Überladung: Versuch an einem einzelnen Modul, Abschaltung durch das Batteriemanagementsystem vor Erreichen kritischer Werte.
+
+Die Berichte zu diesen Voruntersuchungen können wir Ihnen gern zur Verfügung stellen. Uns ist bewusst, dass für die Zulassung in der Europäischen Union die Prüfungen nach den einschlägigen Regelwerken durch eine unabhängige Stelle erforderlich sind, insbesondere zur elektrischen Sicherheit des wiederaufladbaren Energiespeichersystems.
+
+## 5. Fertigung und Qualitätssicherung
+
+Die Vorserienmuster wurden auf unserer Pilotlinie gefertigt, die bereits weitgehend dem späteren Serienprozess entspricht. Jedes Pack durchläuft am Ende der Linie eine Prüfung, bei der Isolationswiderstand, Dichtheit, Kommunikation und die Funktion der Schütze geprüft werden. Die Ergebnisse werden jedem Pack über eine Seriennummer zugeordnet und archiviert.
+
+Unsere Zulieferer für Zellen, Gehäuse und Elektronik werden regelmäßig von unserer Qualitätsabteilung bewertet. Für die Zellen liegen uns die Prüfberichte des Zellherstellers vor. Wir planen, die Zellen zusätzlich stichprobenartig in unserem eigenen Labor zu prüfen. Änderungen an Zellen oder kritischen Bauteilen werden in einem formalen Änderungsprozess bewertet, bevor sie in die Fertigung einfließen.
+
+## 6. Einsatzszenarien beim Kunden
+
+Das Batteriepack ist für typische Einsätze von Kleintransportern im städtischen und regionalen Lieferverkehr ausgelegt. Ein Fahrzeug fährt dabei an einem Arbeitstag meist zwischen 80 und 200 Kilometer, oft mit vielen kurzen Stopps. Das Pack wird über Nacht im Depot mit Wechselstrom geladen, bei Bedarf tagsüber zusätzlich mit Gleichstrom nachgeladen. Daraus ergeben sich hohe Anforderungen an die Zyklenfestigkeit und an die Robustheit gegenüber häufigen Teilladungen.
+
+Ein zweites Szenario sind Kommunalfahrzeuge, etwa für Grünflächenpflege oder Straßenreinigung. Hier stehen die Fahrzeuge länger, werden aber teils bei niedrigen Temperaturen eingesetzt und abgestellt. Für diese Kunden ist die Heizfunktion wichtig, damit das Pack auch nach einer kalten Nacht sofort einsatzbereit ist und schonend geladen werden kann.
+
+Ein drittes Szenario sind Sonderfahrzeuge mit Aufbauten, die zusätzlich elektrische Verbraucher versorgen, zum Beispiel Kühlaggregate oder Hebebühnen. In diesen Fällen wird das Pack auch im Stand belastet. Wir haben deshalb die Kühlung so ausgelegt, dass sie auch ohne Fahrtwind ausreichend Wärme abführt.
+
+## 7. Lebensdauer, Service und Recycling
+
+Wir streben eine Lebensdauer an, die der üblichen Nutzungsdauer eines Kleintransporters entspricht. Unsere Alterungsversuche an Zellen und Modulen laufen noch. Erste Ergebnisse deuten darauf hin, dass die Kapazität nach der geplanten Zyklenzahl über unserem internen Zielwert liegt. Die endgültigen Werte werden wir unseren Kunden nach Abschluss der Versuche mitteilen.
+
+Das Pack ist so aufgebaut, dass einzelne Module in einer Fachwerkstatt getauscht werden können. Dafür haben wir eine Serviceanleitung entworfen, die das sichere Freischalten, das Öffnen des Gehäuses und den Modultausch beschreibt. Werkstätten sollen nur mit geschultem Personal und geeigneter Schutzausrüstung am Pack arbeiten.
+
+Für das Ende der Nutzung arbeiten wir mit einem Recyclingpartner zusammen, der Module zerlegt und Wertstoffe zurückgewinnt. Wir möchten damit die Anforderungen an Rücknahme und Verwertung von Batterien in der Europäischen Union erfüllen. Ein Batteriepass für das Pack ist in Vorbereitung.
+
+## 8. Projektplan
+
+Unser aktueller Zeitplan sieht vor, die Zulassungsprüfungen im kommenden Quartal durchzuführen. Parallel dazu laufen die Dauerlaufversuche in Fahrzeugen eines Pilotkunden. Der Serienstart ist für das darauffolgende Jahr geplant. Wir wissen, dass der Zeitplan von der Verfügbarkeit Ihrer Prüfkapazitäten abhängt, und sind bei den Terminen flexibel. Eine Zusage zu Terminen erwarten wir zum jetzigen Zeitpunkt nicht, wir möchten zunächst den Umfang und die Kosten verstehen.
+
+## 9. Messprotokoll Zellgruppen (Auszug, Module 01 bis 08)
+
+Die folgende Aufstellung zeigt die Spannungen der Zellgruppen nach der Formierung und einer Ruhephase von 24 Stunden. Sie dient nur zur Information.
+
+- Modul 01, Zellgruppe 1: Spannung 3.656 V, Temperatur 21.8 °C, Abweichung zum Mittelwert 2.7 mV, Bewertung in Ordnung
+- Modul 01, Zellgruppe 2: Spannung 3.661 V, Temperatur 21.9 °C, Abweichung zum Mittelwert 1.3 mV, Bewertung in Ordnung
+- Modul 01, Zellgruppe 3: Spannung 3.649 V, Temperatur 22.3 °C, Abweichung zum Mittelwert 1.2 mV, Bewertung in Ordnung
+- Modul 01, Zellgruppe 4: Spannung 3.662 V, Temperatur 22.5 °C, Abweichung zum Mittelwert -1.7 mV, Bewertung in Ordnung
+- Modul 01, Zellgruppe 5: Spannung 3.653 V, Temperatur 22.2 °C, Abweichung zum Mittelwert -3.8 mV, Bewertung in Ordnung
+- Modul 01, Zellgruppe 6: Spannung 3.654 V, Temperatur 21.3 °C, Abweichung zum Mittelwert -3.1 mV, Bewertung in Ordnung
+- Modul 01, Zellgruppe 7: Spannung 3.649 V, Temperatur 22.4 °C, Abweichung zum Mittelwert -3.0 mV, Bewertung in Ordnung
+- Modul 01, Zellgruppe 8: Spannung 3.651 V, Temperatur 21.7 °C, Abweichung zum Mittelwert 3.0 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 1: Spannung 3.649 V, Temperatur 21.8 °C, Abweichung zum Mittelwert 0.4 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 2: Spannung 3.66 V, Temperatur 22.5 °C, Abweichung zum Mittelwert 2.9 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 3: Spannung 3.652 V, Temperatur 21.7 °C, Abweichung zum Mittelwert -1.1 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 4: Spannung 3.66 V, Temperatur 22.7 °C, Abweichung zum Mittelwert -2.8 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 5: Spannung 3.65 V, Temperatur 21.4 °C, Abweichung zum Mittelwert -2.1 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 6: Spannung 3.655 V, Temperatur 22.1 °C, Abweichung zum Mittelwert -1.9 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 7: Spannung 3.648 V, Temperatur 21.8 °C, Abweichung zum Mittelwert -1.0 mV, Bewertung in Ordnung
+- Modul 02, Zellgruppe 8: Spannung 3.656 V, Temperatur 22.7 °C, Abweichung zum Mittelwert 1.5 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 1: Spannung 3.655 V, Temperatur 22.1 °C, Abweichung zum Mittelwert 1.4 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 2: Spannung 3.649 V, Temperatur 22.6 °C, Abweichung zum Mittelwert 2.2 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 3: Spannung 3.66 V, Temperatur 22.4 °C, Abweichung zum Mittelwert -0.9 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 4: Spannung 3.654 V, Temperatur 21.2 °C, Abweichung zum Mittelwert 1.1 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 5: Spannung 3.649 V, Temperatur 21.1 °C, Abweichung zum Mittelwert -2.3 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 6: Spannung 3.65 V, Temperatur 21.6 °C, Abweichung zum Mittelwert -3.6 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 7: Spannung 3.648 V, Temperatur 21.3 °C, Abweichung zum Mittelwert -3.2 mV, Bewertung in Ordnung
+- Modul 03, Zellgruppe 8: Spannung 3.653 V, Temperatur 21.0 °C, Abweichung zum Mittelwert 3.0 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 1: Spannung 3.657 V, Temperatur 21.3 °C, Abweichung zum Mittelwert -2.0 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 2: Spannung 3.653 V, Temperatur 21.7 °C, Abweichung zum Mittelwert -3.0 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 3: Spannung 3.66 V, Temperatur 22.8 °C, Abweichung zum Mittelwert -0.3 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 4: Spannung 3.655 V, Temperatur 21.2 °C, Abweichung zum Mittelwert -3.2 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 5: Spannung 3.653 V, Temperatur 21.5 °C, Abweichung zum Mittelwert 2.6 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 6: Spannung 3.65 V, Temperatur 21.0 °C, Abweichung zum Mittelwert 3.6 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 7: Spannung 3.655 V, Temperatur 21.3 °C, Abweichung zum Mittelwert 0.3 mV, Bewertung in Ordnung
+- Modul 04, Zellgruppe 8: Spannung 3.648 V, Temperatur 22.0 °C, Abweichung zum Mittelwert 3.8 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 1: Spannung 3.66 V, Temperatur 22.3 °C, Abweichung zum Mittelwert -1.9 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 2: Spannung 3.653 V, Temperatur 21.3 °C, Abweichung zum Mittelwert 2.2 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 3: Spannung 3.655 V, Temperatur 22.4 °C, Abweichung zum Mittelwert -1.4 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 4: Spannung 3.651 V, Temperatur 22.5 °C, Abweichung zum Mittelwert 3.9 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 5: Spannung 3.66 V, Temperatur 22.5 °C, Abweichung zum Mittelwert 2.5 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 6: Spannung 3.658 V, Temperatur 21.4 °C, Abweichung zum Mittelwert 0.1 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 7: Spannung 3.653 V, Temperatur 21.1 °C, Abweichung zum Mittelwert -3.8 mV, Bewertung in Ordnung
+- Modul 05, Zellgruppe 8: Spannung 3.652 V, Temperatur 21.5 °C, Abweichung zum Mittelwert 1.5 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 1: Spannung 3.661 V, Temperatur 21.8 °C, Abweichung zum Mittelwert 3.5 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 2: Spannung 3.662 V, Temperatur 22.7 °C, Abweichung zum Mittelwert -1.1 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 3: Spannung 3.651 V, Temperatur 21.4 °C, Abweichung zum Mittelwert -2.4 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 4: Spannung 3.651 V, Temperatur 22.1 °C, Abweichung zum Mittelwert 3.2 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 5: Spannung 3.66 V, Temperatur 21.9 °C, Abweichung zum Mittelwert 1.2 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 6: Spannung 3.659 V, Temperatur 21.2 °C, Abweichung zum Mittelwert 1.3 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 7: Spannung 3.661 V, Temperatur 22.4 °C, Abweichung zum Mittelwert 2.0 mV, Bewertung in Ordnung
+- Modul 06, Zellgruppe 8: Spannung 3.655 V, Temperatur 21.3 °C, Abweichung zum Mittelwert 2.3 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 1: Spannung 3.653 V, Temperatur 22.4 °C, Abweichung zum Mittelwert 3.8 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 2: Spannung 3.654 V, Temperatur 21.7 °C, Abweichung zum Mittelwert 3.6 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 3: Spannung 3.658 V, Temperatur 21.3 °C, Abweichung zum Mittelwert -3.0 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 4: Spannung 3.65 V, Temperatur 22.6 °C, Abweichung zum Mittelwert 2.5 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 5: Spannung 3.65 V, Temperatur 22.5 °C, Abweichung zum Mittelwert 3.8 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 6: Spannung 3.657 V, Temperatur 21.6 °C, Abweichung zum Mittelwert 0.4 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 7: Spannung 3.65 V, Temperatur 21.0 °C, Abweichung zum Mittelwert 3.8 mV, Bewertung in Ordnung
+- Modul 07, Zellgruppe 8: Spannung 3.657 V, Temperatur 21.9 °C, Abweichung zum Mittelwert 3.5 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 1: Spannung 3.654 V, Temperatur 22.6 °C, Abweichung zum Mittelwert 2.6 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 2: Spannung 3.651 V, Temperatur 21.5 °C, Abweichung zum Mittelwert -1.7 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 3: Spannung 3.651 V, Temperatur 22.1 °C, Abweichung zum Mittelwert -1.9 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 4: Spannung 3.654 V, Temperatur 21.2 °C, Abweichung zum Mittelwert 3.3 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 5: Spannung 3.653 V, Temperatur 21.8 °C, Abweichung zum Mittelwert 0.7 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 6: Spannung 3.661 V, Temperatur 21.8 °C, Abweichung zum Mittelwert 3.3 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 7: Spannung 3.655 V, Temperatur 22.0 °C, Abweichung zum Mittelwert 0.2 mV, Bewertung in Ordnung
+- Modul 08, Zellgruppe 8: Spannung 3.648 V, Temperatur 21.8 °C, Abweichung zum Mittelwert -2.5 mV, Bewertung in Ordnung
+
+## 10. Organisatorisches
+
+Für die Prüfungen können wir bis zu vier Vorserienmuster sowie zusätzlich einzelne Module bereitstellen. Die Muster würden wir per Spedition innerhalb Deutschlands an Ihr Prüflabor liefern. Ein Vertrieb außerhalb der Europäischen Union ist derzeit nicht geplant, auch ein Versand der Packs ins Ausland ist nicht vorgesehen. Unsere Kunden holen die Packs ab unserem Werk ab oder lassen sie innerhalb Deutschlands anliefern.
+
+Als Ansprechpartnerin stehe ich Ihnen zur Verfügung, in technischen Fragen unterstützt mich unser Projektleiter Batteriesysteme. Wir würden uns freuen, wenn Sie uns die erforderlichen Prüfungen für die Zulassung in der Europäischen Union nennen und ein Angebot erstellen. Gern können wir die Details auch in einem Gespräch klären.
+
+## 11. Zusammenfassung der Anfrage
+
+Produkt: Hochvolt-Batteriepack MV-HV400 für Kleintransporter, ca. 400 V
+Zielmarkt: Europäische Union
+Muster: bis zu vier Vorserienmuster
+Bitte: Angebot für die erforderlichen Zulassungsprüfungen
+
+Mit freundlichen Grüßen
+Dr. Henrike Vogt
+Leitung Produktzulassung
+MegaVolt Systems GmbH
+projekte@megavolt.example
