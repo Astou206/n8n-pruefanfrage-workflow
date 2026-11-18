@@ -1,0 +1,290 @@
+{
+  "name": "06_SUB_Angebot_berechnen",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "produktkategorie"
+            },
+            {
+              "name": "zielmaerkte"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -432,
+        -64
+      ],
+      "id": "4b8a7c64-df07-48c4-8a50-ba3b943ed407",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "leistungskatalog",
+        "returnAll": true,
+        "filterType": "string",
+        "filterString": "=produktkategorie=eq.{{ $json.produktkategorie }}&zielmarkt=in.({{ $json.zielmaerkte }})"
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        -64
+      ],
+      "id": "d2347f96-0e89-4f28-bd83-fe78f3014cc4",
+      "name": "Get many rows",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Qtju33plYGm23XMx",
+          "name": "Supabase – Prüfanfragen"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bea1d7f5-54b3-44b3-973c-9b332f9b580c",
+              "name": "pruefleistung",
+              "value": "={{ $json.pruefleistung }}",
+              "type": "string"
+            },
+            {
+              "id": "c293ba82-f9f7-477b-8959-f5c0663a0e62",
+              "name": "zielmarkt",
+              "value": "={{ $json.zielmarkt }}",
+              "type": "string"
+            },
+            {
+              "id": "4a2a846d-b23d-455c-aec3-29e067cb5b5b",
+              "name": "preis_eur",
+              "value": "={{ Number($json.pruefstunden) * Number($json.stundensatz_eur) + Number($json.pauschale_eur) }}",
+              "type": "number"
+            },
+            {
+              "id": "3b560cdc-1b82-4461-96b4-9fa147b597dd",
+              "name": "zeile",
+              "value": "=- {{ $json.pruefleistung }} ({{ $json.regelwerk }}): {{ $json.pruefstunden }} Stunden x {{ $json.stundensatz_eur }} EUR + {{ $json.pauschale_eur }} EUR Pauschale = {{ (Number($json.pruefstunden) * Number($json.stundensatz_eur) + Number($json.pauschale_eur)).toLocaleString('de-DE') }} EUR",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        16,
+        -64
+      ],
+      "id": "cd3a3375-a299-4555-a40f-37ba551662b1",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "sum",
+              "field": "preis_eur"
+            },
+            {
+              "aggregation": "concatenate",
+              "field": "zeile",
+              "separateBy": "\n"
+            }
+          ]
+        },
+        "fieldsToSplitBy": "zielmarkt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        -64
+      ],
+      "id": "4c471f85-799f-4331-a446-46fee30e3824",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2f18b314-a827-4978-9576-ac3a5a29e4e4",
+              "name": "markt_block",
+              "value": "=Für den Markt {{ $json.zielmarkt }}:\n{{ $json.concatenated_zeile }}\nZwischensumme {{ $json.zielmarkt }}: {{ $json.sum_preis_eur.toLocaleString('de-DE') }} EUR",
+              "type": "string"
+            },
+            {
+              "id": "962fa73f-36f9-44bc-ba70-41ea9e9f78fe",
+              "name": "summe",
+              "value": "={{ $json.sum_preis_eur }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        464,
+        -64
+      ],
+      "id": "a4ffcd13-4d0a-46c1-8137-43dc52ed488c",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "sum",
+              "field": "summe"
+            },
+            {
+              "aggregation": "concatenate",
+              "field": "markt_block",
+              "separateBy": "\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        688,
+        -64
+      ],
+      "id": "ddabaa96-c757-484d-87e3-2ef6472bee41",
+      "name": "Summarize1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e20448c8-bc7b-43dc-87d6-b45a7299bc09",
+              "name": "sum_preis_eur",
+              "value": "={{ $json.sum_summe }}",
+              "type": "number"
+            },
+            {
+              "id": "83433ce5-4796-45c4-85c9-316fb61d899b",
+              "name": "angebotsblock",
+              "value": "={{ $json.concatenated_markt_block }}",
+              "type": "string"
+            },
+            {
+              "id": "735d8789-978e-486d-bf2c-3ef14163ce9a",
+              "name": "gesamtpreis_text",
+              "value": "=Gesamtpreis: {{ $json.sum_summe.toLocaleString('de-DE') }} EUR",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        912,
+        -64
+      ],
+      "id": "763a5c0a-0aeb-4299-a547-31b28c44596e",
+      "name": "Edit Fields2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Summarize1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "75547f8e-b1eb-456d-8605-b7f8f1b8a898",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f032027e20e9709391bcafe9291ae76dc2a07ff2b593bca6936b7404ddb31c33"
+  },
+  "nodeGroups": [],
+  "id": "vHYFdpg8zq7ZIgeA",
+  "tags": []
+}
