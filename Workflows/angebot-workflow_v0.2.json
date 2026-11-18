@@ -477,7 +477,7 @@ v0.2 – Happy Path komplett: Katalogabfrage, Preis, Angebotstext, Supabase, Mai
             },
             {
               "name": "to",
-              "value": "astou.diame@tn.syntax-institut.de"
+              "value": "ihre-adresse@example.com"
             },
             {
               "name": "=subject",
