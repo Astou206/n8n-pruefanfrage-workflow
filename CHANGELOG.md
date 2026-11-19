@@ -2,6 +2,13 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.2.0](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.1.0...v1.2.0) (2026-11-19)
+
+
+### Neue Funktionen
+
+* Projekt 2 Prüfanfragen-Agent mit System Prompts v1.0 bis v3.6, Tests und Doku ([d9e3361](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/d9e336145114ad2295c3f9e902d3afaedd025a05))
+
 ## v1.1 – 2026-10-12 – Mail-Eingang (Feedback Zwischenpräsentation)
 Datei: `angebot-workflow_v1.1.json`
 
