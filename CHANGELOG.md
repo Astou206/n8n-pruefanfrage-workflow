@@ -2,6 +2,23 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.3.1](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.0...v1.3.1) (2026-11-20)
+
+
+### Dokumentation
+
+* Compliance-Bewertung nach Mail-Eingang und Regression aktualisiert ([f8d7025](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/f8d702512e75b809b2c809fbac6c2a2f2d43fff5))
+* Compliance-Bewertung, Dokumentation und Testtabelle nach Mail-Eingang und Regression aktualisiert ([6d2447d](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/6d2447d695980c4e8ace8cc534070db6bd74a34d))
+* Dokumentation nach Regression und Compliance-Tests aktualisiert ([3c24d2e](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/3c24d2e8428b985db12a4e531c9827b67703f1a7))
+* README, Testprotokoll und Dokumentation aktualisiert ([b0c45f1](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/b0c45f12bc398f03d2b445a1287142ae4d2f71ed))
+* Testtabelle nach Mail-Eingang und Regression aktualisiert ([5c96b5a](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/5c96b5a3146da2eb801578357bd366c8ab0b6172))
+
+
+### Tests
+
+* Regression, Multi-Turn- und Compliance-Tests ergänzt ([10491a5](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/10491a546f42f4c0e94d00ef16e9ac015e692650))
+* Regression, Multi-Turn- und Compliance-Tests ergänzt ([562c2bd](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/562c2bda38f3b025e04da07d653cf7a890576eb0))
+
 ## [1.3.0](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.2.0...v1.3.0) (2026-11-20)
 
 
