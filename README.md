@@ -30,7 +30,7 @@ Projekt 1 ist der Vorgänger mit festen Schritten statt eines Agenten: Anfrage p
 | `Compliance-Bewertung Prüfanfragen-Agent (Projekt 2).pdf` | Einstufung nach EU AI Act, Maßnahmen, Datenschutz-Einschätzung |
 | `Architektur-Blueprint_Woche8.pdf` | Architektur-Entscheidung für Projekt 2 |
 | `Projekt2_Testtabelle.xlsx` | Alle Testfälle und Testläufe von Projekt 2 mit Auswertung je Prompt-Version |
-| `TESTPROTOKOLL.md` | Zusammenfassung der Prompt-Tests von Projekt 2 |
+| `TESTPROTOKOLL.md` | Zusammenfassung aller Testfälle und Testläufe von Projekt 2 |
 | `system_prompt_v1.md` bis `system_prompt_v3_6.md` | System Prompts von Projekt 2, jede Version mit Changelog |
 | `Workflows/` | n8n-Exporte beider Projekte (siehe unten) |
 | `SQL/` | Tabellen `leistungskatalog`, `anfragen` und `logs` anlegen und den Katalog füllen |
