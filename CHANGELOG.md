@@ -2,6 +2,13 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.3.2](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.1...v1.3.2) (2026-11-20)
+
+
+### Dokumentation
+
+* Beschreibung des Testprotokolls in der README angepasst ([6336d31](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/6336d31232dd0356407353dda3822b4fd555bbd4))
+
 ## [1.3.1](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.0...v1.3.1) (2026-11-20)
 
 
