@@ -10,8 +10,8 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.5,
       "position": [
-        -880,
-        -352
+        -1392,
+        -736
       ],
       "id": "661ad1d8-de0b-47cb-95ea-11a91d1d5a3e",
       "name": "Anfrage (Chat)",
@@ -27,8 +27,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -496,
-        -352
+        -704,
+        -672
       ],
       "id": "e3dd03ae-ff58-4f01-ab16-ed155ac20552",
       "name": "Prüfanfragen-Agent",
@@ -44,8 +44,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -768,
-        -144
+        -1056,
+        -368
       ],
       "id": "57a63404-ff41-4f55-a54e-3c5be0c51ff1",
       "name": "LLM (OpenRouter)",
@@ -61,8 +61,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.4,
       "position": [
-        -592,
-        -144
+        -880,
+        -368
       ],
       "id": "cd9644d8-40bb-4d40-ad12-8d050a2ef47f",
       "name": "Gesprächsgedächtnis"
@@ -90,8 +90,8 @@
       "type": "n8n-nodes-base.supabaseTool",
       "typeVersion": 1,
       "position": [
-        -48,
-        -144
+        -384,
+        -368
       ],
       "id": "6000ae91-ced9-4c27-9bc3-851b9c706e58",
       "name": "katalog_suche",
@@ -104,14 +104,14 @@
     },
     {
       "parameters": {
-        "content": "## Prüfanfragen-Agent (Projekt 2)\nChat-Anfrage rein, Agent sucht passende Prüfleistungen im Katalog und schlägt Umfang und Preis vor.\nStand: Agent mit 1 Tool (katalog_suche). Weitere Tools folgen.\nSystem Prompt: system_prompt_v2_1.md",
+        "content": "## Prüfanfragen-Agent (Projekt 2)\nAnfrage rein, Agent sucht passende Prüfleistungen im Katalog und schlägt Umfang und Preis vor.\nStand: Agent mit 3 Tools.\nSystem Prompt: system_prompt_v3_6.md",
         "height": 176,
         "width": 544
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -1664,
-        -800
+        -1952,
+        -944
       ],
       "typeVersion": 1,
       "id": "82b023a0-be41-4c35-a7d8-be38952fbd3c",
@@ -119,9 +119,9 @@
     },
     {
       "parameters": {
-        "content": "## 1 · Agent\nDer Agent entscheidet selbst, ob er nachfragt oder im Katalog sucht.\nRegeln und Ablauf stehen im System Prompt (v1).\nGedächtnis: damit er nach einer Rückfrage weitermachen kann.",
+        "content": "## 1 · Agent\nDer Agent entscheidet selbst, ob er nachfragt oder im Katalog sucht.\nRegeln und Ablauf stehen im System Prompt (v3.6).\nGedächtnis: damit er nach einer Rückfrage weitermachen kann.",
         "height": 144,
-        "width": 320
+        "width": 368
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
@@ -139,8 +139,8 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        432,
-        576
+        -592,
+        -32
       ],
       "typeVersion": 1,
       "id": "2a2273ba-87c1-4dea-bc69-570c5032703c",
@@ -163,7 +163,7 @@
             },
             {
               "fieldId": "email",
-              "fieldValue": "={{ $fromAI('email', 'E-Mail-Adresse des Kunden. Wenn nicht genannt, schreibe: nicht genannt', 'string', 'nicht genannt') }}"
+              "fieldValue": "={{ $('Eingang vereinheitlichen').item.json.absender_email || $fromAI('email', 'Wenn nicht genannt, schreibe: nicht genannt', 'string', 'nicht genannt') }}"
             },
             {
               "fieldId": "produktkategorie",
@@ -191,7 +191,7 @@
             },
             {
               "fieldId": "rohtext",
-              "fieldValue": "={{ $('Anfrage (Chat)').item.json.chatInput }}"
+              "fieldValue": "={{ $('Eingang vereinheitlichen').item.json.chatInput }}"
             }
           ]
         }
@@ -199,8 +199,8 @@
       "type": "n8n-nodes-base.supabaseTool",
       "typeVersion": 1,
       "position": [
-        -400,
-        -144
+        -704,
+        -368
       ],
       "id": "e3c76025-9ea3-4a59-93c4-bc56fecb1172",
       "name": "angebot_speichern",
@@ -257,8 +257,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        -208,
-        -144
+        -544,
+        -368
       ],
       "id": "399d984b-538e-4705-b244-7396b50a7191",
       "name": "angebot_berechnen"
@@ -270,7 +270,7 @@
             {
               "id": "b14bc3d3-cfa9-45d0-8360-a2bfefdc0283",
               "name": "output",
-              "value": "={{ (() => {\n  const text = $json.output;\n  const anfrage = $('Anfrage (Chat)').item.json.chatInput || '';\n  const en = (anfrage.match(/\\b(the|and|we|our|would|could|please|offer|hello|you|for)\\b/gi) || []).length;\n  const de = (anfrage.match(/\\b(und|wir|unsere|unser|bitte|fuer|der|die|das|ein|eine|ist)\\b/gi) || []).length;\n  const englisch = en > de;\n  if (/Aussortiert|Discarded/i.test(text)) return text;\n  const hinweis = englisch && /Gesamtpreis/.test(text) ? '\\n\\nNote: The price breakdown above is provided in German.' : '';\n  const ki = englisch ? 'This draft was created with AI assistance.' : 'Dieser Entwurf wurde mit KI-Unterstützung erstellt.';\n  return text + hinweis + '\\n\\n' + ki;\n})() }}",
+              "value": "={{ (() => {\n  const text = $json.output;\n  const anfrage = $('Eingang vereinheitlichen').item.json.chatInput || '';\n  const en = (anfrage.match(/\\b(the|and|we|our|would|could|please|offer|hello|you|for)\\b/gi) || []).length;\n  const de = (anfrage.match(/\\b(und|wir|unsere|unser|bitte|fuer|der|die|das|ein|eine|ist)\\b/gi) || []).length;\n  const englisch = en > de;\n  if (/Aussortiert|Discarded/i.test(text)) return text;\n  const hinweis = englisch && /Gesamtpreis/.test(text) ? '\\n\\nNote: The price breakdown above is provided in German.' : '';\n  const ki = englisch ? 'This draft was created with AI assistance.' : 'Dieser Entwurf wurde mit KI-Unterstützung erstellt.';\n  return text + hinweis + '\\n\\n' + ki;\n})() }}",
               "type": "string"
             }
           ]
@@ -280,8 +280,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -64,
-        -560
+        16,
+        -720
       ],
       "id": "f3550f8a-e898-446f-ac9c-2b95769e1329",
       "name": "KI-Kennzeichnung"
@@ -305,7 +305,7 @@
             },
             {
               "fieldId": "nachricht",
-              "fieldValue": "=Status: {{ ($('Prüfanfragen-Agent').item.json.output.match(/Status:\\s*([^\\n.]+)/) || [null, 'unbekannt'])[1] }} | Tools: {{ ($('Prüfanfragen-Agent').item.json.intermediateSteps || []).map(s => s.action.tool).join(', ') || 'keine' }} | Session: {{ $('Anfrage (Chat)').item.json.sessionId }}"
+              "fieldValue": "=Status: {{ ($('Prüfanfragen-Agent').item.json.output.match(/Status:\\s*([^\\n.]+)/) || [null, 'unbekannt'])[1] }} | Tools: {{ ($('Prüfanfragen-Agent').item.json.intermediateSteps || []).map(s => s.action.tool).join(', ') || 'keine' }} | Session: {{ $('Eingang vereinheitlichen').item.json.sessionId }}"
             }
           ]
         }
@@ -313,8 +313,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        160,
-        -560
+        240,
+        -720
       ],
       "id": "88c40d51-6de1-4060-a34d-243abc595e9a",
       "name": "Log Abschluss",
@@ -343,8 +343,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        384,
-        -560
+        464,
+        -720
       ],
       "id": "4694167a-0752-4768-827e-68f3853fd19d",
       "name": "Antwort ausgeben"
@@ -362,7 +362,7 @@
             {
               "id": "353dbdbd-c748-48bc-9fd1-d0334a00040d",
               "name": "anfrage",
-              "value": "={{ $('Anfrage (Chat)').item.json.chatInput }}",
+              "value": "={{ $('Eingang vereinheitlichen').item.json.chatInput }}",
               "type": "string"
             }
           ]
@@ -372,8 +372,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        -80,
-        -336
+        -48,
+        -416
       ],
       "id": "7dca469a-601e-4151-8a81-9c2172d8cdc6",
       "name": "Fehler erfassen"
@@ -405,8 +405,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        144,
-        -336
+        160,
+        -416
       ],
       "id": "dee085af-5937-4b96-b1a4-42533fda6d1a",
       "name": "Log Fehler",
@@ -441,8 +441,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        368,
-        -336
+        384,
+        -416
       ],
       "id": "af093590-4ecd-4cfd-ab9c-0a35a2eab470",
       "name": "Anfrage sichern",
@@ -486,8 +486,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        592,
-        -336
+        608,
+        -416
       ],
       "id": "45992640-2d58-45ff-b0e0-2eedfa57340f",
       "name": "Mitarbeiter benachrichtigen",
@@ -516,11 +516,217 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.5,
       "position": [
-        816,
-        -336
+        832,
+        -416
       ],
       "id": "8a462308-4cee-4782-9026-a60a43119546",
       "name": "Fallback-Antwort"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2.2,
+      "position": [
+        -1488,
+        -576
+      ],
+      "id": "0c267a3a-acbf-4fce-b879-b992d3c80fbc",
+      "name": "Email Trigger (IMAP)",
+      "credentials": {
+        "imap": {
+          "id": "3gVjN11jaawEfJiC",
+          "name": "IMAP – Prüfanfragen"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "35d4c15b-3c4e-4e13-8f3d-b9f3a60c319e",
+              "name": "chatInput",
+              "value": "={{ $json.subject + \"\\n\\n\" + ($json.textPlain?.trim() || String($json.textHtml || '').replace(/<style[\\s\\S]*?<\\/style>/gi, '').replace(/<\\/(div|p)>/gi, '\\n').replace(/<br\\s*\\/?>/gi, '\\n').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim()) }}",
+              "type": "string"
+            },
+            {
+              "id": "46a278e4-557e-475e-a34e-2165ef9036db",
+              "name": "sessionId",
+              "value": "={{ $json.metadata['message-id'] }}",
+              "type": "string"
+            },
+            {
+              "id": "8633240c-df37-40a4-9c93-551bdb1a6d1e",
+              "name": "absender_email",
+              "value": "={{ ($json.from.match(/<([^>]+)>/) || [null, $json.from])[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "78ac5095-9dd7-4e56-bfbd-2622e5247468",
+              "name": "quelle",
+              "value": "=Mail",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -1264,
+        -576
+      ],
+      "id": "e33c27b0-486f-4d8a-bb5a-c21871223bdf",
+      "name": "Mail umwandeln"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d91b1dd2-ab6f-4ad0-a96d-c06989045ba0",
+              "name": "chatInput",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            },
+            {
+              "id": "f98fc382-3b7d-461a-a63e-e9496f68791d",
+              "name": "sessionId",
+              "value": "={{ $json.sessionId }}",
+              "type": "string"
+            },
+            {
+              "id": "f94890aa-f3e2-48a1-b231-600f7b11ae9c",
+              "name": "absender_email",
+              "value": "={{ $json.absender_email ?? '' }}",
+              "type": "string"
+            },
+            {
+              "id": "6e700a86-fba8-4e87-a783-0bd894e6f2ef",
+              "name": "quelle",
+              "value": "={{ $json.quelle ?? 'Chat' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -1008,
+        -672
+      ],
+      "id": "f3c790ea-3b68-4fac-bec1-9827e8921f50",
+      "name": "Eingang vereinheitlichen"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "93ce571d-9675-4a7f-a63b-495361b2acb1",
+              "leftValue": "={{ $('Eingang vereinheitlichen').item.json.quelle }}",
+              "rightValue": "=Mail",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "3d4e8912-864c-4eeb-b5bb-9c58053c2b2b",
+              "leftValue": "={{ $('Antwort ausgeben').item.json.output }}",
+              "rightValue": "=Aussortiert",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        640,
+        -720
+      ],
+      "id": "cc709161-7aec-4b91-a28b-5a595dfc73ee",
+      "name": "Quelle Mail?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ from: \"Prüfanfragen <onboarding@resend.dev>\", to: \"ihre-adresse@example.com\", subject: \"Entwurf zur Freigabe: \" + $('Eingang vereinheitlichen').item.json.chatInput.split(\"\\n\")[0], text: \"Absender: \" + $('Eingang vereinheitlichen').item.json.absender_email + \"\\n\\nEntwurf:\\n\" + $('Antwort ausgeben').item.json.output + \"\\n\\nOriginal-Anfrage:\\n\" + $('Eingang vereinheitlichen').item.json.chatInput }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        880,
+        -736
+      ],
+      "id": "f04acfad-ae9e-42b0-be04-1abfb137a5c6",
+      "name": "Entwurf an Mitarbeiter",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "7R4YqSYq3ZgaVyzV",
+          "name": "Resend – Prüfanfragen"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3416b3be-c074-434b-9f6a-299d417d7aef",
+              "leftValue": "={{ String($json.output || '') }}",
+              "rightValue": "Status:",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -304,
+        -704
+      ],
+      "id": "e62e7638-9f3f-4092-9014-3dbbbf95cfb4",
+      "name": "Antwort gültig?"
     }
   ],
   "pinData": {},
@@ -529,7 +735,7 @@
       "main": [
         [
           {
-            "node": "Prüfanfragen-Agent",
+            "node": "Eingang vereinheitlichen",
             "type": "main",
             "index": 0
           }
@@ -595,7 +801,7 @@
       "main": [
         [
           {
-            "node": "KI-Kennzeichnung",
+            "node": "Antwort gültig?",
             "type": "main",
             "index": 0
           }
@@ -674,6 +880,79 @@
           }
         ]
       ]
+    },
+    "Mail umwandeln": {
+      "main": [
+        [
+          {
+            "node": "Eingang vereinheitlichen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "Mail umwandeln",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eingang vereinheitlichen": {
+      "main": [
+        [
+          {
+            "node": "Prüfanfragen-Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Antwort ausgeben": {
+      "main": [
+        [
+          {
+            "node": "Quelle Mail?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quelle Mail?": {
+      "main": [
+        [
+          {
+            "node": "Entwurf an Mitarbeiter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Antwort gültig?": {
+      "main": [
+        [
+          {
+            "node": "KI-Kennzeichnung",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fehler erfassen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -685,10 +964,9 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "fb6f2302-e81e-4eb0-8894-be79987852da",
+  "versionId": "09fafab1-75b6-417b-84fc-6d9b194e97e9",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "f032027e20e9709391bcafe9291ae76dc2a07ff2b593bca6936b7404ddb31c33"
+    "templateCredsSetupCompleted": true
   },
   "nodeGroups": [],
   "id": "y8IoJU6wp1vB7EEH",
