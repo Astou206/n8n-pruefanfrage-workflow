@@ -2,6 +2,25 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.3.0](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.2.0...v1.3.0) (2026-11-20)
+
+
+### Neue Funktionen
+
+* Mail-Eingang für den Prüfanfragen-Agent mit Antwort-Prüfung und Entwurf an den Mitarbeiter. ([ada3624](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/ada36243831795e96d3476f7f7ac545ea1c3b0b3))
+
+
+### Fehlerbehebungen
+
+* unbereinigten Workflow-Export entfernt. ([b56834e](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/b56834e2af4ff88ee741022bf8a56cfad1b2f754))
+
+
+### Dokumentation
+
+* Dokumentation des Prüfanfragen-Agents als PDF ([ebfed6e](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/ebfed6e3551c8c39b305797138cbb9018a6bca45))
+* doppelte Testtabelle entfernt ([bd66739](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/bd66739fb67d86c4844a2b71c21e317d72b6a1bb))
+* Testtabelle um Mail-Tests M1 bis M4 ergänzt. ([faa3c49](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/faa3c493293468b880cd26eb918a08b5324eb104))
+
 ## [1.2.0](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.1.0...v1.2.0) (2026-11-19)
 
 
