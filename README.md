@@ -15,7 +15,7 @@ Mein Leitprinzip dabei: Was zuverlässig sein muss, übernimmt der Workflow, nic
 - **Absicherung:** „Antwort gültig?“ prüft jede Antwort. Fehlt die Statuszeile, landet die Anfrage in der manuellen Prüfung. Bei Ausfällen greift ein Fehlerzweig mit Logging und Mail an einen Mitarbeiter.
 - **Freigabe:** Der Agent hat kein Tool, das an Kunden sendet. Bei Mail-Anfragen geht der Entwurf nur an einen Mitarbeiter.
 - **Dienste:** n8n, OpenRouter (GPT-4.1 mini), Supabase, Resend, Gmail (IMAP).
-- **Tests:** 24 Testfälle in 79 Läufen, davon 6 Adversarial-Tests, 2 Compliance-Tests und ein Multi-Turn-Test, jeweils bewertet nach Korrektheit, Relevanz, Vollständigkeit und Sicherheit.
+- **Tests:** 24 Testfälle in 104 Läufen, davon 6 Adversarial-Tests, 2 Compliance-Tests und ein Multi-Turn-Test, jeweils bewertet nach Korrektheit, Relevanz, Vollständigkeit und Sicherheit. In der finalen Testrunde am 24.11.2026 erfüllten 21 von 25 Läufen alle vier Kriterien.
 - **Compliance:** nach meiner Einschätzung kein Hochrisiko-System. Im Chat gilt die Transparenzpflicht nach Artikel 50 des EU AI Act. Dreizehn Maßnahmen sind umgesetzt.
 
 ## Projekt 1: Prüfanfrage-Workflow
@@ -29,8 +29,9 @@ Projekt 1 ist der Vorgänger mit festen Schritten statt eines Agenten: Anfrage p
 | `Dokumentation Prüfanfragen-Agent (Projekt 2).pdf` | Dokumentation von Projekt 2: Architektur, Tools, Guardrails, Evaluation, Setup, bekannte Einschränkungen |
 | `Compliance-Bewertung Prüfanfragen-Agent (Projekt 2).pdf` | Einstufung nach EU AI Act, Maßnahmen, Datenschutz-Einschätzung |
 | `Architektur-Blueprint_Woche8.pdf` | Architektur-Entscheidung für Projekt 2 |
+| `Abschlusspräsentation Prüfanfragen-Agent.pdf` | Folien der Abschlusspräsentation |
 | `Projekt2_Testtabelle.xlsx` | Alle Testfälle und Testläufe von Projekt 2 mit Auswertung je Prompt-Version |
-| `TESTPROTOKOLL.md` | Zusammenfassung aller Testfälle und Testläufe von Projekt 2 |
+| `TESTPROTOKOLL.md` | Zusammenfassung aller Testfälle und Testläufe von Projekt 2, inklusive finaler Testrunde |
 | `system_prompt_v1.md` bis `system_prompt_v3_6.md` | System Prompts von Projekt 2, jede Version mit Changelog |
 | `Workflows/` | n8n-Exporte beider Projekte (siehe unten) |
 | `SQL/` | Tabellen `leistungskatalog`, `anfragen` und `logs` anlegen und den Katalog füllen |
