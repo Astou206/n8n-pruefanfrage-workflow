@@ -2,6 +2,22 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.3.2](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.1...v1.3.2) (2026-11-24)
+
+
+### Dokumentation
+
+* Beschreibung des Testprotokolls in der README angepasst ([6336d31](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/6336d31232dd0356407353dda3822b4fd555bbd4))
+* Dateiname der Folien in der README korrigiert ([cf3ddbb](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/cf3ddbb1171f76129ab14a9acbb52a29cba7bd12))
+* Dokumentation nach Feedback ergänzt (Architektur, Testfälle) ([7f2d9fc](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/7f2d9fcd070437075e07711bdd48c9acea86dc2c))
+* Workflow mit Notizblöcken ([34773c8](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/34773c829c17187c6575fa9a7e79b8155e12135c))
+* Workflow mit Notizblöcken, Dokumentation nach Feedback, Folien zur Abschlusspräsentation ([1591b3d](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/1591b3d1d283df7cb018db93b3bcfef57edcccdf))
+
+
+### Tests
+
+* finale Testrunde vom 24.11.2026: ([b76ef20](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/b76ef208b8e961895a3b46f89a0f6ac88f4d5ffd))
+
 ## [1.3.1](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.0...v1.3.1) (2026-11-20)
 
 
