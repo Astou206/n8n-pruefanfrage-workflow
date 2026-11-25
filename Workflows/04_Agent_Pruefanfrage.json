@@ -91,7 +91,7 @@
       "typeVersion": 1,
       "position": [
         -64,
-        -256
+        -224
       ],
       "id": "6000ae91-ced9-4c27-9bc3-851b9c706e58",
       "name": "katalog_suche",
@@ -147,11 +147,11 @@
             },
             {
               "fieldId": "ansprechpartner",
-              "fieldValue": "={{ $fromAI('ansprechpartner', 'Name der Ansprechperson. Wenn nicht genannt, schreibe: nicht genannt', 'string', 'nicht genannt') }}"
+              "fieldValue": "={{ $fromAI('ansprechpartner', 'Wenn nicht genannt, schreibe: nicht genannt', 'string', 'nicht genannt').replace(/^\\[?Name\\]?$/i, 'nicht genannt') }}"
             },
             {
               "fieldId": "email",
-              "fieldValue": "={{ $('Eingang vereinheitlichen').item.json.absender_email || $fromAI('email', 'Wenn nicht genannt, schreibe: nicht genannt', 'string', 'nicht genannt') }}"
+              "fieldValue": "={{ $('Eingang vereinheitlichen').item.json.absender_email || 'nicht genannt' }}"
             },
             {
               "fieldId": "produktkategorie",
@@ -179,7 +179,7 @@
             },
             {
               "fieldId": "rohtext",
-              "fieldValue": "={{ $('Eingang vereinheitlichen').item.json.chatInput }}"
+              "fieldValue": "={{ $('Eingang vereinheitlichen').item.json.original }}"
             }
           ]
         }
@@ -188,7 +188,7 @@
       "typeVersion": 1,
       "position": [
         -384,
-        -256
+        -224
       ],
       "id": "e3c76025-9ea3-4a59-93c4-bc56fecb1172",
       "name": "angebot_speichern",
@@ -246,7 +246,7 @@
       "typeVersion": 2.2,
       "position": [
         -224,
-        -256
+        -224
       ],
       "id": "399d984b-538e-4705-b244-7396b50a7191",
       "name": "angebot_berechnen"
@@ -350,7 +350,7 @@
             {
               "id": "353dbdbd-c748-48bc-9fd1-d0334a00040d",
               "name": "anfrage",
-              "value": "={{ $('Eingang vereinheitlichen').item.json.chatInput }}",
+              "value": "{{ $('Eingang vereinheitlichen').item.json.original }}",
               "type": "string"
             }
           ]
@@ -577,7 +577,7 @@
             {
               "id": "d91b1dd2-ab6f-4ad0-a96d-c06989045ba0",
               "name": "chatInput",
-              "value": "={{ $json.chatInput }}",
+              "value": "={{ String($json.chatInput).replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}/g, '[E-Mail]').replace(/\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{1,4}){3,8}\\b/g, '[IBAN]').replace(/(?:\\+\\d{1,3}[ \\/-]?|\\b0)\\d[\\d \\/-]{6,}\\d/g, '[Telefon]').replace(/(Ansprechpartner(?:in)?:?\\s*|Herr\\s+|Frau\\s+)[A-ZÄÖÜ][a-zäöüß]+(?:\\s+[A-ZÄÖÜ][a-zäöüß]+){0,2}/g, '$1[Name]').replace(/((?:viele|beste|freundliche) gr(?:ü|ue)(?:ß|ss)e|mit freundlichen gr(?:ü|ue)(?:ß|ss)en|best regards|kind regards)[\\s\\S]*$/i, '$1, [Name]') }}",
               "type": "string"
             },
             {
@@ -596,6 +596,12 @@
               "id": "6e700a86-fba8-4e87-a783-0bd894e6f2ef",
               "name": "quelle",
               "value": "={{ $json.quelle ?? 'Chat' }}",
+              "type": "string"
+            },
+            {
+              "id": "0e6efc73-9694-42e8-80c3-8d0e94ba58f0",
+              "name": "original",
+              "value": "={{ $json.chatInput }}",
               "type": "string"
             }
           ]
@@ -664,7 +670,7 @@
         "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ from: \"Prüfanfragen <onboarding@resend.dev>\", to: \"ihre-adresse@example.com\", subject: \"Entwurf zur Freigabe: \" + $('Eingang vereinheitlichen').item.json.chatInput.split(\"\\n\")[0], text: \"Absender: \" + $('Eingang vereinheitlichen').item.json.absender_email + \"\\n\\nEntwurf:\\n\" + $('Antwort ausgeben').item.json.output + \"\\n\\nOriginal-Anfrage:\\n\" + $('Eingang vereinheitlichen').item.json.chatInput }) }}",
+        "jsonBody": "={{ JSON.stringify({ from: \"Prüfanfragen <onboarding@resend.dev>\", to: \"ihre-adresse@example.com\", subject: \"Entwurf zur Freigabe: \" + $('Eingang vereinheitlichen').item.json.original.split(\"\\n\")[0], text: \"Absender: \" + $('Eingang vereinheitlichen').item.json.absender_email + \"\\n\\nEntwurf:\\n\" + $('Antwort ausgeben').item.json.output + \"\\n\\nOriginal-Anfrage:\\n\" + $('Eingang vereinheitlichen').item.json.chatInput }) }}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1030,10 +1036,9 @@
     "timeSavedMode": "fixed",
     "errorWorkflow": "Kfq9YYQl0xiO9T1G",
     "callerPolicy": "workflowsFromSameOwner",
-    "availableInMCP": false,
-    "executionTimeout": -1
+    "availableInMCP": false
   },
-  "versionId": "204c5e69-8394-4c9f-9d00-266281968db5",
+  "versionId": "ab67e2e3-ff91-48c1-892e-effb52a0086e",
   "meta": {
     "templateCredsSetupCompleted": true
   },
