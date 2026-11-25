@@ -2,6 +2,13 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.3.4](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.3...v1.3.4) (2026-11-25)
+
+
+### Fehlerbehebungen
+
+* unbereinigten Workflow-Export entfernt ([66ba1e5](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/66ba1e5846b68d52dc9f92e25b14fb5064fac44f))
+
 ## [1.3.3](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.2...v1.3.3) (2026-11-25)
 
 
