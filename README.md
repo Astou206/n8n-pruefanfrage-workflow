@@ -15,8 +15,9 @@ Mein Leitprinzip dabei: Was zuverlässig sein muss, übernimmt der Workflow, nic
 - **Absicherung:** „Antwort gültig?“ prüft jede Antwort. Fehlt die Statuszeile, landet die Anfrage in der manuellen Prüfung. Bei Ausfällen greift ein Fehlerzweig mit Logging und Mail an einen Mitarbeiter.
 - **Freigabe:** Der Agent hat kein Tool, das an Kunden sendet. Bei Mail-Anfragen geht der Entwurf nur an einen Mitarbeiter.
 - **Dienste:** n8n, OpenRouter (GPT-4.1 mini), Supabase, Resend, Gmail (IMAP).
-- **Tests:** 24 Testfälle in 104 Läufen, davon 6 Adversarial-Tests, 2 Compliance-Tests und ein Multi-Turn-Test, jeweils bewertet nach Korrektheit, Relevanz, Vollständigkeit und Sicherheit. In der finalen Testrunde am 24.11.2026 erfüllten 21 von 25 Läufen alle vier Kriterien.
-- **Compliance:** nach meiner Einschätzung kein Hochrisiko-System. Im Chat gilt die Transparenzpflicht nach Artikel 50 des EU AI Act. Dreizehn Maßnahmen sind umgesetzt.
+- **Tests:** 25 Testfälle in 113 Läufen, davon 6 Adversarial-Tests, 3 Compliance-Tests und ein Multi-Turn-Test, jeweils bewertet nach Korrektheit, Relevanz, Vollständigkeit und Sicherheit. In der finalen Testrunde am 24.11.2026 erfüllten 21 von 25 Läufen alle vier Kriterien.
+- **Datenschutz:** Bevor der Text zum Sprachmodell geht, ersetzt der Workflow E-Mail-Adressen, Telefonnummern, IBAN und Namen durch Platzhalter. Das Original bleibt intern (Datenbank und Mail an den Mitarbeiter). Bei OpenRouter sind Anbieter ausgeschlossen, die mit den Daten trainieren oder nicht geprüft sind.
+- **Compliance:** nach meiner Einschätzung kein Hochrisiko-System. Im Chat gilt die Transparenzpflicht nach Artikel 50 des EU AI Act. Sechzehn Maßnahmen sind umgesetzt.
 
 ## Projekt 1: Prüfanfrage-Workflow
 
