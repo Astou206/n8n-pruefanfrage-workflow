@@ -2,6 +2,14 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.3.3](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.2...v1.3.3) (2026-11-25)
+
+
+### Fehlerbehebungen
+
+* Pseudonymisierung personenbezogener Daten und Datenrichtlinien bei OpenRouter (Feedback Datenschutz) ([c1524ee](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/c1524eec65aa3698e792edb20e75bff0bb60af29))
+* Pseudonymisierung personenbezogener Daten und Datenrichtlinien bei OpenRouter (Feedback Datenschutz) ([b07dbd7](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/b07dbd794cc97b3ed4a968e8a5f970232a3f00a1))
+
 ## [1.3.2](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.1...v1.3.2) (2026-11-24)
 
 
