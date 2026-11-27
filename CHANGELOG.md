@@ -2,6 +2,14 @@
 
 Alle wichtigen Änderungen am Workflow, neueste Version oben.
 
+## [1.3.5](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.4...v1.3.5) (2026-11-27)
+
+
+### Dokumentation
+
+* Folien zur Abschlusspräsentation aktualisiert ([181dc10](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/181dc108219a5af367d27677bb09962b479bce80))
+* Sub-Workflow benannt und mit Notizen gegliedert ([d93d2e2](https://github.com/Astou206/n8n-pruefanfrage-workflow/commit/d93d2e2939efdce13cfee41facb8bcaf1e2a9c81))
+
 ## [1.3.4](https://github.com/Astou206/n8n-pruefanfrage-workflow/compare/v1.3.3...v1.3.4) (2026-11-25)
 
 
