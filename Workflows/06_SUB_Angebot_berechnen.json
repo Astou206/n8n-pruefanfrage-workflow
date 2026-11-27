@@ -21,7 +21,7 @@
         -64
       ],
       "id": "4b8a7c64-df07-48c4-8a50-ba3b943ed407",
-      "name": "When Executed by Another Workflow"
+      "name": "Aufruf vom Agenten"
     },
     {
       "parameters": {
@@ -38,7 +38,7 @@
         -64
       ],
       "id": "d2347f96-0e89-4f28-bd83-fe78f3014cc4",
-      "name": "Get many rows",
+      "name": "Katalogzeilen laden",
       "credentials": {
         "supabaseApi": {
           "id": "Qtju33plYGm23XMx",
@@ -85,7 +85,7 @@
         -64
       ],
       "id": "cd3a3375-a299-4555-a40f-37ba551662b1",
-      "name": "Edit Fields"
+      "name": "Preis je Zeile"
     },
     {
       "parameters": {
@@ -112,7 +112,7 @@
         -64
       ],
       "id": "4c471f85-799f-4331-a446-46fee30e3824",
-      "name": "Summarize"
+      "name": "Summe je Markt"
     },
     {
       "parameters": {
@@ -141,7 +141,7 @@
         -64
       ],
       "id": "a4ffcd13-4d0a-46c1-8137-43dc52ed488c",
-      "name": "Edit Fields1"
+      "name": "Marktblock formatieren"
     },
     {
       "parameters": {
@@ -167,7 +167,7 @@
         -64
       ],
       "id": "ddabaa96-c757-484d-87e3-2ef6472bee41",
-      "name": "Summarize1"
+      "name": "Gesamtsumme"
     },
     {
       "parameters": {
@@ -202,71 +202,119 @@
         -64
       ],
       "id": "763a5c0a-0aeb-4299-a547-31b28c44596e",
-      "name": "Edit Fields2"
+      "name": "Angebotsblock ausgeben"
+    },
+    {
+      "parameters": {
+        "content": "## 1 · Eingabe\nDer Agent übergibt Produktkategorie und Zielmärkte. Katalogzeilen laden holt aus Supabase nur die passenden Prüfleistungen.",
+        "height": 288,
+        "width": 544,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -608,
+        -192
+      ],
+      "typeVersion": 1,
+      "id": "a05d0f90-5d2d-46fb-8693-dff08c55068d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 2 · Rechnen ohne KI\nPreis je Zeile: Stunden x 145 EUR + Pauschale. Danach Summe je Markt und Gesamtsumme. Hier rechnet kein Sprachmodell.",
+        "height": 288,
+        "width": 816,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -16,
+        -192
+      ],
+      "typeVersion": 1,
+      "id": "c73441c0-4eaa-4f57-b1d6-05fe21b61f46",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 3 · Ausgabe\nLiefert angebotsblock, gesamtpreis_text und sum_preis_eur an den Agenten zurück. Der Agent übernimmt die Werte unverändert.",
+        "height": 288,
+        "width": 384,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        832,
+        -192
+      ],
+      "typeVersion": 1,
+      "id": "f36dee19-bd29-4174-8ea6-34d4197a8eb7",
+      "name": "Sticky Note2"
     }
   ],
   "pinData": {},
   "connections": {
-    "When Executed by Another Workflow": {
+    "Aufruf vom Agenten": {
       "main": [
         [
           {
-            "node": "Get many rows",
+            "node": "Katalogzeilen laden",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get many rows": {
+    "Katalogzeilen laden": {
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "Preis je Zeile",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Edit Fields": {
+    "Preis je Zeile": {
       "main": [
         [
           {
-            "node": "Summarize",
+            "node": "Summe je Markt",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Summarize": {
+    "Summe je Markt": {
       "main": [
         [
           {
-            "node": "Edit Fields1",
+            "node": "Marktblock formatieren",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Edit Fields1": {
+    "Marktblock formatieren": {
       "main": [
         [
           {
-            "node": "Summarize1",
+            "node": "Gesamtsumme",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Summarize1": {
+    "Gesamtsumme": {
       "main": [
         [
           {
-            "node": "Edit Fields2",
+            "node": "Angebotsblock ausgeben",
             "type": "main",
             "index": 0
           }
@@ -279,10 +327,9 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "75547f8e-b1eb-456d-8605-b7f8f1b8a898",
+  "versionId": "721db444-c071-49c6-bddc-f204cd0e8619",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "f032027e20e9709391bcafe9291ae76dc2a07ff2b593bca6936b7404ddb31c33"
+    "templateCredsSetupCompleted": true
   },
   "nodeGroups": [],
   "id": "vHYFdpg8zq7ZIgeA",
